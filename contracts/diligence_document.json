@@ -1,0 +1,13 @@
+{
+  "service": "biopharma-data-room",
+  "source_context": "http://health.people.com.cn/n1/2026/0918/c14739-40800824.html",
+  "sample": {
+    "document_id": "DOC-CMC-014",
+    "classification": "工艺机密",
+    "version": 3,
+    "redaction_parent": "DOC-CMC-014-ORIGINAL",
+    "allowed_roles": [
+      "技术尽调"
+    ]
+  }
+}
