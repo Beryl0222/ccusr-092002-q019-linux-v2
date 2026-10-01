@@ -9,5 +9,148 @@
     "allowed_roles": [
       "技术尽调"
     ]
+  },
+  "material_categories": [
+    {
+      "code": "CLINICAL",
+      "name": "临床数据",
+      "description": "临床试验方案、患者级数据、统计分析报告、安全性数据库"
+    },
+    {
+      "code": "PATENT",
+      "name": "专利分析",
+      "description": "专利族、自由实施分析、权属链、许可与诉讼材料"
+    },
+    {
+      "code": "CMC",
+      "name": "生产工艺",
+      "description": "工艺机密、放大验证、杂质谱、质量标准与批记录"
+    },
+    {
+      "code": "REGULATORY",
+      "name": "监管往来",
+      "description": "IND/NDA 申报包、审评意见、答复函、检查与整改记录"
+    }
+  ],
+  "sensitivity_levels": [
+    {
+      "code": "L1",
+      "name": "公开级",
+      "needs_redaction": false,
+      "description": "已公开或无敏感性的摘要材料"
+    },
+    {
+      "code": "L2",
+      "name": "商业机密",
+      "needs_redaction": false,
+      "description": "未公开商业信息，按角色与阶段开放"
+    },
+    {
+      "code": "L3",
+      "name": "受限机密",
+      "needs_redaction": true,
+      "description": "涉及工艺机密、监管策略等，需查看脱敏件"
+    },
+    {
+      "code": "L4",
+      "name": "患者级/绝密",
+      "needs_redaction": true,
+      "description": "患者级数据与核心机密，仅开放强脱敏版本，导出逐次审批"
+    }
+  ],
+  "redaction_tiers": [
+    {
+      "code": "ORIGINAL",
+      "name": "原件",
+      "description": "未脱敏原件，仅供内部资料管理员，绝不对外"
+    },
+    {
+      "code": "STANDARD",
+      "name": "标准脱敏",
+      "description": "遮蔽身份字段、商业秘密字段"
+    },
+    {
+      "code": "AGGREGATED",
+      "name": "聚合脱敏",
+      "description": "患者级数据聚合为统计口径，去除间接标识符"
+    }
+  ],
+  "roles": [
+    {
+      "code": "DEAL_LEAD",
+      "name": "交易负责人",
+      "scope": "internal",
+      "description": "创建交易、控制阶段推进、处置泄露事件"
+    },
+    {
+      "code": "ROOM_ADMIN",
+      "name": "资料管理员",
+      "scope": "internal",
+      "description": "上传与扫描、制作脱敏件、维护谱系"
+    },
+    {
+      "code": "LEGAL",
+      "name": "法务",
+      "scope": "internal",
+      "description": "NDA 核验、问答法务审核、事件调查"
+    },
+    {
+      "code": "MEDICAL",
+      "name": "医学",
+      "scope": "internal",
+      "description": "问答医学审核、患者级材料脱敏口径确认"
+    },
+    {
+      "code": "BIDDER_ADMIN",
+      "name": "竞标方管理员",
+      "scope": "external",
+      "description": "本方成员与团队管理，仅见所属组织"
+    },
+    {
+      "code": "技术尽调",
+      "name": "技术尽调专家",
+      "scope": "external",
+      "description": "查看临床、生产工艺、监管类授权材料"
+    },
+    {
+      "code": "商业尽调",
+      "name": "商业尽调专家",
+      "scope": "external",
+      "description": "查看专利分析与商业类授权材料"
+    },
+    {
+      "code": "法务尽调",
+      "name": "法务尽调专家",
+      "scope": "external",
+      "description": "查看专利、监管往来类授权材料"
+    }
+  ],
+  "phase_gates": [
+    {
+      "phase": 1,
+      "name": "初步尽调",
+      "open_categories": ["PATENT"],
+      "max_sensitivity": "L2",
+      "description": "仅专利分析摘要，公开级与商业机密"
+    },
+    {
+      "phase": 2,
+      "name": "深度尽调",
+      "open_categories": ["CLINICAL", "PATENT", "REGULATORY"],
+      "max_sensitivity": "L3",
+      "description": "临床与监管材料以标准脱敏件开放"
+    },
+    {
+      "phase": 3,
+      "name": "确认性尽调",
+      "open_categories": ["CLINICAL", "PATENT", "CMC", "REGULATORY"],
+      "max_sensitivity": "L4",
+      "description": "生产工艺开放，患者级材料以聚合脱敏件开放"
+    }
+  ],
+  "default_role_rules": {
+    "技术尽调": ["CLINICAL", "CMC", "REGULATORY"],
+    "商业尽调": ["PATENT"],
+    "法务尽调": ["PATENT", "REGULATORY"]
   }
 }

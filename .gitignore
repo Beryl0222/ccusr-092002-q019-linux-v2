@@ -10,3 +10,7 @@ coverage/
 __pycache__/
 *.py[cod]
 .DS_Store
+
+# 受控资料室本地数据
+/data/
+*.jsonl
